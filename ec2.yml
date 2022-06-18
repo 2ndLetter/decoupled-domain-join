@@ -9,6 +9,9 @@ Description: >-
   instance and an Elastic IP Address. You will be billed for the AWS resources
   used if you create a stack from this template.
 Parameters:
+  ImageId:
+    Description: AMI ID
+    Type: String
   InstanceType:
     Description: WebServer EC2 instance type
     Type: String
@@ -27,16 +30,7 @@ Parameters:
     Default: 0.0.0.0/0
     AllowedPattern: '(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})'
     ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
-Mappings:
-  AWSInstanceType2Arch:
-    t2.micro:
-      Arch: HVM64
-    t2.medium:
-      Arch: HVM64
-    t3.micro:
-      Arch: HVM64
-    t3.medium:
-      Arch: HVM64
+
 Resources:
   EC2Instance:
     Type: 'AWS::EC2::Instance'
