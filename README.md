@@ -2,7 +2,8 @@
 
 ## CloudFormation Stack:
 ### - Microsoft AD
-### - RHEL8 Instance
+### - RHEL8 Instance ()
+### - Windows 10 Instance
 ### - Instance Profile
 ### - Lambda Function
 ### - s3 bucket
@@ -11,6 +12,7 @@
 ### - Add AD credentials to s3 bucket
 ------
 ## Bootstrap Script:
+### - Install SSM Agent
 ### - Install temp user and add to wheel group
 ### - Create SSH keypair
 ### - Add public key to temp user
