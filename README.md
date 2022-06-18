@@ -1,6 +1,7 @@
 # decoupled-domain-join
 
 ## CloudFormation Stack:
+### - Microsoft AD
 ### - RHEL8 Instance
 ### - Instance Profile
 ### - Lambda Function
