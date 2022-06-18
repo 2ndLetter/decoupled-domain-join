@@ -1,6 +1,10 @@
 [
     {
       "ParameterKey": "ImageId",
-      "ParameterValue": "ami-06640050dc3f556bb"    
+      "ParameterValue": "ami-06640050dc3f556bb"
+    },
+    {
+        "ParameterKey": "InstanceType",
+        "ParameterValue": "t3.medium"
     }
 ]
