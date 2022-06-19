@@ -73,6 +73,7 @@ Resources:
       SecurityGroups:
         - !Ref InstanceSecurityGroup
       ImageId: !Ref ImageId
+      IamInstanceProfile: !Ref EC2InstanceProfile
       InstanceType: !Ref InstanceType
       Tags:
         - Key: "Name"
