@@ -35,6 +35,7 @@ Resources:
   EC2Instance:
     Type: 'AWS::EC2::Instance'
     Properties:
+      KeyName: "lab"
       UserData:
         Fn::Base64: !Sub |
             #!/bin/bash -ex
@@ -78,10 +79,10 @@ Resources:
       Tags:
         - Key: "Name"
           Value: "RHEL_Server"
-    CreationPolicy:
-      ResourceSignal:
-        Count: 1
-        Timeout: PT10M
+    #CreationPolicy:
+    #  ResourceSignal:
+    #    Count: 1
+    #    Timeout: PT10M
       
   InstanceSecurityGroup:
     Type: 'AWS::EC2::SecurityGroup'
