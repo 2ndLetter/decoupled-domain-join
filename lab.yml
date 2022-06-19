@@ -80,6 +80,7 @@ Resources:
           Value: "RHEL_Server"
     CreationPolicy:
       ResourceSignal:
+        Count: 1
         Timeout: PT10M
       
   InstanceSecurityGroup:
