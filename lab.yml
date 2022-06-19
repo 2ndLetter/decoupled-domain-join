@@ -78,10 +78,10 @@ Resources:
       Tags:
         - Key: "Name"
           Value: "RHEL_Server"
-    #CreationPolicy:
-    #  ResourceSignal:
-    #    Count: 1
-    #    Timeout: PT10M
+    CreationPolicy:
+      ResourceSignal:
+        Count: 1
+        Timeout: PT10M
   
   EC2InstanceRole:
     Type: 'AWS::IAM::Role'
