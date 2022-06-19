@@ -11,7 +11,7 @@ Description: >-
 Parameters:
   ImageId:
     Description: AMI ID
-    Type: String
+    Type: AWS::EC2::Image::Id
   InstanceType:
     Description: WebServer EC2 instance type
     Type: String
