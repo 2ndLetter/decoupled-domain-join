@@ -9,5 +9,5 @@ aws cloudformation deploy \
     --template-file $1.yml \
     --parameter-overrides file://parameters/$1.json \
     --no-fail-on-empty-changeset \
-    --capabilities CAPABILITY_IAM \
+    --capabilities CAPABILITY_NAMED_IAM \
     #--no-execute-changeset
