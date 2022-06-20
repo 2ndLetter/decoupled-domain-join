@@ -28,10 +28,8 @@ then
   exit 1
 fi
 
-echo $NAME
-exit 0
-
-#NAME=$argN$RanNumGen
+#echo $NAME
+#exit 0
 
 echo "This script valdates a CloudFormation template, and creates/updates a CloudFormation Stack"
 
