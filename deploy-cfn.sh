@@ -2,21 +2,22 @@
 
 #Todo: Script doesn't work when choosing a specific stack name
 
-while getopts 'n:u:c' OPTION; do
+while getopts 'n:u:rc' OPTION; do
   case "$OPTION" in
     n)
       argN="$OPTARG"
-      NAME=$argN-$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 4 | head -n 1)
       ;;
     u)
-      argU="$OPTARG"
-      NAME=$argN-$argU
+      argU="-$OPTARG"
+      ;;
+    r)
+      argR=-$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 4 | head -n 1)
       ;;
     c)
       argC="--no-execute-changeset"
       ;;
     ?)
-      echo "Usage: $(basename $0) [-n argument] [-u argument] [-c]"
+      echo "Usage: $(basename $0) [-n argument] [-u argument] [-r] [-c]"
       exit 1
       ;;
   esac
@@ -27,6 +28,8 @@ then
   echo "Error, this script requires flags to execute!"
   exit 1
 fi
+
+NAME=$argN$argU$argR
 
 #echo $NAME
 #exit 0
