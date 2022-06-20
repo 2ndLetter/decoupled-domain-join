@@ -17,7 +17,7 @@
 ### - [x] Create SSH keypair
 ### - [x] Add public key to temp user
 ### - [ ] Add private key to Secrets Manager
-### - [ ] Install Chef Client
+### - [x] Install Chef Client
 ### - [ ] Invoke Lambda Function
 ------
 ## Lambda Function:
