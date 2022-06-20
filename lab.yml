@@ -73,10 +73,7 @@ Resources:
             echo '%wheel ALL=(ALL)    NOPASSWD: ALL' | sudo EDITOR='tee -a' visudo
 
             # Create ssh keys
-            su bootstrap
-            cd
-            ssh-keygen -q -t rsa -N '' -f ~/.ssh/bootstrap <<<y >/dev/null 2>&1
-            exit
+            runuser -l bootstrap -c "ssh-keygen -q -t rsa -N '' -f /home/bootstrap/.ssh/bootstrap <<<y >/dev/null 2>&1"
 
             # Send private key to secrets manager
             aws secretsmanager create-secret --name MyKey --secret-string file:///home/bootstrap/.ssh/bootstrap

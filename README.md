@@ -17,6 +17,7 @@
 ### - [x] Create SSH keypair
 ### - [x] Add public key to temp user
 ### - [ ] Add private key to Secrets Manager
+### - [ ] Add private key to s3 bucket instead of Secrets Manager
 ### - [x] Install Chef Client
 ### - [ ] Invoke Lambda Function
 ------
