@@ -157,3 +157,5 @@ Outputs:
   S3Bucket:
     Description: S3 bucket name
     Value: !Ref S3Bucket
+    Export:
+      Name: !Sub "${AWS::StackName}-S3Bucket"
