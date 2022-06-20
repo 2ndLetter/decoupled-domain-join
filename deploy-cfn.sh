@@ -34,7 +34,6 @@ fi
 echo "This script valdates a CloudFormation template, and creates/updates a CloudFormation Stack"
 
 aws cloudformation deploy \
-    #--stack-name cfn-stack-$argN$argR \
     --stack-name cfn-stack-$NAME \
     --template-file $argN.yml \
     --parameter-overrides file://parameters/$argN.json \
