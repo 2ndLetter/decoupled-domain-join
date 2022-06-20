@@ -13,9 +13,9 @@
 ------
 ## Userdata Script:
 ### - [x] Install SSM Agent, cfn-bootstrap, unzip, wget, python3, Chef Client
-### - [ ] Install temp user and add to wheel group
-### - [ ] Create SSH keypair
-### - [ ] Add public key to temp user
+### - [x] Install temp user and add to wheel group
+### - [x] Create SSH keypair
+### - [x] Add public key to temp user
 ### - [ ] Add private key to Secrets Manager
 ### - [ ] Install Chef Client
 ### - [ ] Invoke Lambda Function

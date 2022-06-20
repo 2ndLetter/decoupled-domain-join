@@ -62,10 +62,18 @@ Resources:
             # Install Chef Client
             curl -L https://omnitruck.chef.io/install.sh | bash || error_exit 'could not install chef'
 
-            # Download artifacts
-            #aws s3 sync s3:// /tmp
-            #chmod +x /tmp/*.sh
-            #. /tmp/TBD.sh
+            # Create user & add to wheel group
+            useradd -G wheel bootstrap
+            
+            # Add NOPASSWD to wheel group
+            echo '%wheel ALL=(ALL)    NOPASSWD: ALL' | sudo EDITOR='tee -a' visudo
+
+            # Create ssh keys
+            su bootstrap
+            cd
+            ssh-keygen -q -t rsa -N '' -f ~/.ssh/bootstrap <<<y >/dev/null 2>&1
+            exit
+
 
             /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource EC2Instance --region ${AWS::Region}
 
