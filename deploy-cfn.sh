@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#Todo: Script doesn't work when choosing a specific stack name
+
 while getopts 'n:rc' OPTION; do
   case "$OPTION" in
     n)

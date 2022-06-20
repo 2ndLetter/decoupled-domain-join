@@ -45,7 +45,7 @@ Resources:
             exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
             
             # Install dependencies
-            dnf install -y unzip wget python3
+            dnf install -y unzip wget python3 vim jq
 
             # Install aws cli
             curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
@@ -67,7 +67,7 @@ Resources:
             curl -L https://omnitruck.chef.io/install.sh | bash || error_exit 'could not install chef'
 
             # Create user & add to wheel group
-            useradd -G wheel bootstrap
+            useradd -mG wheel bootstrap
             
             # Add NOPASSWD to wheel group
             echo '%wheel ALL=(ALL)    NOPASSWD: ALL' | sudo EDITOR='tee -a' visudo
@@ -79,8 +79,10 @@ Resources:
             exit
 
             # Send private key to secrets manager
-            aws secretsmanager create-secret --name MyKey --secret-string file://home/bootstrap/.ssh/bootstrap
+            aws secretsmanager create-secret --name MyKey --secret-string file:///home/bootstrap/.ssh/bootstrap
 
+            # Verify private key is in secrets manager
+            aws secretsmanager get-secret-value --secret-id MyKey | jq --raw-output .SecretString
 
             /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource EC2Instance --region ${AWS::Region}
 
