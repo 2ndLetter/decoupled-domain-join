@@ -77,7 +77,7 @@ Resources:
             runuser -l bootstrap -c "ssh-keygen -q -t rsa -N '' -f /home/bootstrap/.ssh/bootstrap <<<y >/dev/null 2>&1"
             
             # Upload private key to s3
-            S3Bucket=$(aws cloudformation list-exports --query "Exports[?Name=='cfn-stack-environment-G5v3-S3Bucket'].Value" --output text)
+            S3Bucket=$(aws cloudformation list-exports --query "Exports[?Name=='cfn-stack-environment-S3Bucket'].Value" --output text)
             aws s3 cp /home/bootstrap/.ssh/bootstrap s3://$S3Bucket/
 
             #/opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource EC2Instance --region ${AWS::Region}
