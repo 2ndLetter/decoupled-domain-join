@@ -59,6 +59,9 @@ Resources:
             systemctl start amazon-ssm-agent
             systemctl status amazon-ssm-agent
 
+            # Install Chef Client
+            curl -L https://omnitruck.chef.io/install.sh | bash || error_exit 'could not install chef'
+
             # Download artifacts
             #aws s3 sync s3:// /tmp
             #chmod +x /tmp/*.sh

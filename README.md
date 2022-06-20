@@ -2,7 +2,7 @@
 
 ## CloudFormation Stack:
 ### - [ ] Microsoft AD
-### - [ ] RHEL8 Instance (userdata)
+### - [ ] RHEL8 Instance (Userdata)
 ### - [ ] Windows 10 Instance
 ### - [ ] Instance Profile
 ### - [ ] Lambda Function
@@ -11,8 +11,8 @@
 ## Preparation Script:
 ### - [ ] Add AD credentials to s3 bucket
 ------
-## Bootstrap Script:
-### - [ ] Install SSM Agent
+## Userdata Script:
+### - [x] Install SSM Agent, cfn-bootstrap, unzip, wget, python3, Chef Client
 ### - [ ] Install temp user and add to wheel group
 ### - [ ] Create SSH keypair
 ### - [ ] Add public key to temp user
