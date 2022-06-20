@@ -18,6 +18,12 @@ while getopts 'n:rc' OPTION; do
   esac
 done
 
+if [ -z $1 ]
+then
+  echo "Error, this script requires flags to execute!"
+  exit 1
+fi
+
 echo "This script valdates a CloudFormation template, and creates/updates a CloudFormation Stack"
 
 aws cloudformation deploy \
