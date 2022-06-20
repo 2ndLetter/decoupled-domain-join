@@ -1,31 +1,33 @@
 # decoupled-domain-join
 
-## CloudFormation Stack:
+## Environment CloudFormation Stack:
+### - [x] S3 bucket for SSH keypairs 
 ### - [ ] Microsoft AD
-### - [ ] RHEL8 Instance (Userdata)
-### - [ ] Windows 10 Instance
-### - [ ] Instance Profile
+### - [ ] Server 2019 ?
+------
+## Environment Script:
+### - [x] Create ec2 keypair
+### - [ ] Upload AD credentials to s3 bucket
+------
+## Lab CloudFormation Stack:
+### - [x] RHEL8 Instance (userdata)
+### - [x] Instance Profile (IAM Role/Policies)
+### - [x] Security Group(s)
 ### - [ ] Lambda Function
-### - [ ] s3 bucket
 ------
-## Preparation Script:
-### - [ ] Add AD credentials to s3 bucket
-------
-## Userdata Script:
+## Lab Script (userdata):
 ### - [x] Install SSM Agent, cfn-bootstrap, unzip, wget, python3, Chef Client
 ### - [x] Install temp user and add to wheel group
 ### - [x] Create SSH keypair
 ### - [x] Add public key to temp user
-### - [ ] Add private key to Secrets Manager
-### - [ ] Add private key to s3 bucket instead of Secrets Manager
+### - [x] Upload private key to S3Bucket
 ### - [x] Install Chef Client
 ### - [ ] Invoke Lambda Function
+### - [ ] Delete temp user
 ------
-## Lambda Function:
+## Lambda Function: (payload: private ssh key + AD domain credentials + private IP address)
 ### - [ ] Retrieve private key from Secrets Manager
 ### - [ ] Retrieve AD credentials from s3 bucket
 ### - [ ] Connect to ec2 instance via SSH
 ### - [ ] Joins ec2 instance to AD Domain
 ------
-## Bootstrap Script:
-### - [ ] Delete temp user

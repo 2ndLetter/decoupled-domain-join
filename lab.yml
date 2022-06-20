@@ -32,8 +32,6 @@ Parameters:
     ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
 
 Resources:
-  S3Bucket:
-    Type: 'AWS::S3::Bucket'
 
   EC2Instance:
     Type: 'AWS::EC2::Instance'
@@ -77,14 +75,12 @@ Resources:
 
             # Create ssh keys
             runuser -l bootstrap -c "ssh-keygen -q -t rsa -N '' -f /home/bootstrap/.ssh/bootstrap <<<y >/dev/null 2>&1"
+            
+            # Upload private key to s3
+            S3Bucket=$(aws cloudformation list-exports --query "Exports[?Name=='cfn-stack-environment-G5v3-S3Bucket'].Value" --output text)
+            aws s3 cp /home/bootstrap/.ssh/bootstrap s3://$S3Bucket/
 
-            # Send private key to secrets manager
-            #aws secretsmanager create-secret --name MyKey --secret-string file:///home/bootstrap/.ssh/bootstrap
-
-            # Verify private key is in secrets manager
-            #aws secretsmanager get-secret-value --secret-id MyKey | jq --raw-output .SecretString
-
-            /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource EC2Instance --region ${AWS::Region}
+            #/opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource EC2Instance --region ${AWS::Region}
 
             #'Fn::Join':
             #  - ''
@@ -120,6 +116,7 @@ Resources:
         - !Sub arn:${AWS::Partition}:iam::aws:policy/AmazonS3FullAccess
         - !Sub arn:${AWS::Partition}:iam::aws:policy/AmazonEC2ReadOnlyAccess
         - !Sub arn:${AWS::Partition}:iam::aws:policy/SecretsManagerReadWrite
+        - !Sub arn:${AWS::Partition}:iam::aws:policy/AWSCloudFormationReadOnlyAccess
 
   EC2InstanceProfile:
     Type: 'AWS::IAM::InstanceProfile'
@@ -154,8 +151,3 @@ Outputs:
   InstanceIPAddress:
     Description: IP address of the newly created EC2 instance
     Value: !Ref IPAddress
-  S3Bucket:
-    Description: S3 bucket name
-    Value: !Ref S3Bucket
-    Export:
-      Name: !Sub "${AWS::StackName}-S3Bucket"
