@@ -41,7 +41,8 @@ Resources:
             #!/bin/bash -ex
             
             # Send logs to console
-            exec >>(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
+            #exec >>(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
+            exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
             
             # Install dependencies
             dnf install -y unzip wget python3
@@ -95,10 +96,10 @@ Resources:
       Tags:
         - Key: "Name"
           Value: "RHEL_Server"
-    CreationPolicy:
-      ResourceSignal:
-        Count: 1
-        Timeout: PT60M
+    #CreationPolicy:
+    #  ResourceSignal:
+    #    Count: 1
+    #    Timeout: PT60M
   
   EC2InstanceRole:
     Type: 'AWS::IAM::Role'
@@ -116,6 +117,7 @@ Resources:
         - !Sub arn:${AWS::Partition}:iam::aws:policy/AmazonSSMManagedInstanceCore
         - !Sub arn:${AWS::Partition}:iam::aws:policy/AmazonS3ReadOnlyAccess
         - !Sub arn:${AWS::Partition}:iam::aws:policy/AmazonEC2ReadOnlyAccess
+        - !Sub arn:${AWS::Partition}:iam::aws:policy/SecretsManagerReadWrite
 
   EC2InstanceProfile:
     Type: 'AWS::IAM::InstanceProfile'
