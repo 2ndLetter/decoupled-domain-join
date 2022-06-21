@@ -13,7 +13,7 @@ Parameters:
     Description: AMI ID
     Type: AWS::EC2::Image::Id
   InstanceType:
-    Description: WebServer EC2 instance type
+    Description: Server EC2 instance type
     Type: String
     Default: t3.medium
     AllowedValues:

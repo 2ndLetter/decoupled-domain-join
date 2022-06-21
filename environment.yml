@@ -3,6 +3,18 @@ Description: >-
   Enviornment for the "lab"
 
 Parameters:
+  ImageId:
+    Description: AMI ID
+    Type: AWS::EC2::Image::Id
+  InstanceType:
+    Description: Server EC2 instance type
+    Type: String
+    Default: t3.medium
+    AllowedValues:
+      - t2.micro
+      - t2.medium
+      - t3.micro
+      - t3.medium
   VpcId:
     Description: VPC
     Type: "AWS::EC2::VPC::Id"
@@ -12,6 +24,14 @@ Parameters:
   Password:
     Description: Password
     Type: String
+  RDPLocation:
+    Description: The IP address range that can be used to RDP to the EC2 instances
+    Type: String
+    MinLength: '9'
+    MaxLength: '18'
+    Default: 0.0.0.0/0
+    AllowedPattern: '(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})'
+    ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
 
 Resources:
   S3Bucket:
@@ -29,6 +49,75 @@ Resources:
         SubnetIds: !Ref SubnetIDs
         VpcId:
           Ref: VpcId
+
+  EC2Instance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      KeyName: "lab"
+      UserData:
+        Fn::Base64: !Sub |
+            $progressPreference = 'silentlyContinue'
+            Invoke-WebRequest `
+                https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/windows_amd64/AmazonSSMAgentSetup.exe `
+                -OutFile $env:USERPROFILE\Desktop\SSMAgent_latest.exe
+            Start-Process `
+                -FilePath $env:USERPROFILE\Desktop\SSMAgent_latest.exe `
+                -ArgumentList "/S"
+            rm -Force $env:USERPROFILE\Desktop\SSMAgent_latest.exe
+            Restart-Service AmazonSSMAgent
+
+      SecurityGroups:
+        - !Ref InstanceSecurityGroup
+      ImageId: !Ref ImageId
+      IamInstanceProfile: !Ref EC2InstanceProfile
+      InstanceType: !Ref InstanceType
+      Tags:
+        - Key: "Name"
+          Value: "RHEL_Server"
+
+  EC2InstanceRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: ec2.amazonaws.com
+            Action: ['sts:AssumeRole']
+      Path: /
+      ManagedPolicyArns:
+        - !Sub arn:${AWS::Partition}:iam::aws:policy/CloudWatchAgentServerPolicy
+        - !Sub arn:${AWS::Partition}:iam::aws:policy/AmazonSSMManagedInstanceCore
+        - !Sub arn:${AWS::Partition}:iam::aws:policy/AmazonS3FullAccess
+        - !Sub arn:${AWS::Partition}:iam::aws:policy/AmazonEC2ReadOnlyAccess
+        - !Sub arn:${AWS::Partition}:iam::aws:policy/SecretsManagerReadWrite
+        - !Sub arn:${AWS::Partition}:iam::aws:policy/AWSCloudFormationReadOnlyAccess
+    #CreationPolicy:
+    #  ResourceSignal:
+    #    Count: 1
+    #    Timeout: PT60M
+
+
+  EC2InstanceProfile:
+    Type: 'AWS::IAM::InstanceProfile'
+    Properties:
+      Path: '/'
+      Roles:
+        - !Ref EC2InstanceRole
+
+  InstanceSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Enable RDP access
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '3389'
+          ToPort: '3389'
+          CidrIp: !Ref RDPLocation
+
+
+
 
 
 
