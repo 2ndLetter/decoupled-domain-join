@@ -1,5 +1,16 @@
 # decoupled-domain-join
+#
+# Steps:
+1. Log into AWS account. I'm using ACloudGuru Cloud Sandbox
+2. Run `aws configure` to configure the aws cli
+3. Run `./environment.sh lab` to create a new keypair 
+4. Add parameters to the parameters/environment.json file (Todo: Create script to easily automate this)
+5. Run `./deploy-cfn.sh -n environment` to deploy the environment resources
+6. Log into the Windows server and [install the AD admin tools](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_install_ad_tools.html)
+7. Run `./deploy-cfn.sh -n lab -r` to deploy the lab resources
 
+#
+# Todo:
 ## Environment CloudFormation Stack:
 ### - [x] S3 bucket for SSH keypairs 
 ### - [x] Microsoft AD
@@ -31,3 +42,4 @@
 ### - [ ] Connect to ec2 instance via SSH
 ### - [ ] Joins ec2 instance to AD Domain
 ------
+
