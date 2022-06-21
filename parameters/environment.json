@@ -1,10 +1,14 @@
 [
     {
-      "ParameterKey": "ImageId",
-      "ParameterValue": "ami-06640050dc3f556bb"
+      "ParameterKey": "VpcId",
+      "ParameterValue": "vpc-08b3db99b87c18029"
     },
     {
-        "ParameterKey": "InstanceType",
-        "ParameterValue": "t3.medium"
+        "ParameterKey": "SubnetIDs",
+        "ParameterValue": "subnet-0dfbe095b63ffc8ba, subnet-00a8fa74613fb5b87"
+    },
+    {
+        "ParameterKey": "Password",
+        "ParameterValue": "P@$$Word123!"
     }
 ]

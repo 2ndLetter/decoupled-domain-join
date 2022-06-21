@@ -2,9 +2,35 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: >-
   Enviornment for the "lab"
 
+Parameters:
+  VpcId:
+    Description: VPC
+    Type: "AWS::EC2::VPC::Id"
+  SubnetIDs:
+    Description: Subnets
+    Type: "List<AWS::EC2::Subnet::Id>"
+  Password:
+    Description: Password
+    Type: String
+
 Resources:
   S3Bucket:
     Type: 'AWS::S3::Bucket'
+
+
+  ActiveDirectory:
+    Type: AWS::DirectoryService::MicrosoftAD
+    Properties:
+      Edition: Standard
+      Name: "lab.example.com"
+      Password: !Ref Password
+      ShortName: lab
+      VpcSettings: 
+        SubnetIds: !Ref SubnetIDs
+        VpcId:
+          Ref: VpcId
+
+
 
 Outputs:
   S3Bucket:

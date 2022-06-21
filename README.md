@@ -2,7 +2,7 @@
 
 ## Environment CloudFormation Stack:
 ### - [x] S3 bucket for SSH keypairs 
-### - [ ] Microsoft AD
+### - [x] Microsoft AD
 ### - [ ] Server 2019 ?
 ------
 ## Environment Script:
