@@ -80,6 +80,9 @@ Resources:
             S3Bucket=$(aws cloudformation list-exports --query "Exports[?Name=='cfn-stack-environment-S3Bucket'].Value" --output text)
             aws s3 cp /home/bootstrap/.ssh/bootstrap s3://$S3Bucket/
 
+            # Upload AD Credentials to s3
+            echo "P@$$Word123!" > 
+
             #/opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource EC2Instance --region ${AWS::Region}
 
             #'Fn::Join':
