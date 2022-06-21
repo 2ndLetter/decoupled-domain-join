@@ -86,7 +86,7 @@ Resources:
 
             echo "bootstrap script completed"
 
-            #/opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource EC2Instance --region ${AWS::Region}
+            /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource EC2Instance --region ${AWS::Region}
 
             #'Fn::Join':
             #  - ''
@@ -100,10 +100,10 @@ Resources:
       Tags:
         - Key: "Name"
           Value: "RHEL_Server"
-    #CreationPolicy:
-    #  ResourceSignal:
-    #    Count: 1
-    #    Timeout: PT60M
+    CreationPolicy:
+      ResourceSignal:
+        Count: 1
+        Timeout: PT60M
   
   EC2InstanceRole:
     Type: 'AWS::IAM::Role'
