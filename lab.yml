@@ -81,7 +81,8 @@ Resources:
             aws s3 cp /home/bootstrap/.ssh/bootstrap s3://$S3Bucket/
 
             # Upload AD Credentials to s3
-            echo "P@$$Word123!" > 
+            echo "{\"username\":\"admin\",\"domain\":\"lab.example.com\",\"password\":\"P@$$Word123\"}" | jq > /tmp/passwords.json
+            aws s3 cp /tmp/passwords.json s3://$S3Bucket/
 
             #/opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource EC2Instance --region ${AWS::Region}
 
