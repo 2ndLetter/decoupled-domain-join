@@ -3,17 +3,17 @@
 ## Environment CloudFormation Stack:
 ### - [x] S3 bucket for SSH keypairs 
 ### - [x] Microsoft AD
-### - [ ] Server 2019 ?
+### - [x] Server 2019
+### - [ ] Lambda Function
 ------
 ## Environment Script:
 ### - [x] Create ec2 keypair
-### - [ ] Upload AD credentials to s3 bucket
+### - [x] Upload AD credentials to s3 bucket
 ------
 ## Lab CloudFormation Stack:
 ### - [x] RHEL8 Instance (userdata)
 ### - [x] Instance Profile (IAM Role/Policies)
 ### - [x] Security Group(s)
-### - [ ] Lambda Function
 ------
 ## Lab Script (userdata):
 ### - [x] Install SSM Agent, cfn-bootstrap, unzip, wget, python3, Chef Client
