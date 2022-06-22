@@ -73,7 +73,7 @@ Resources:
       InstanceType: !Ref InstanceType
       Tags:
         - Key: "Name"
-          Value: "RHEL_Server"
+          Value: "Windows_Server"
 
   EC2InstanceRole:
     Type: 'AWS::IAM::Role'

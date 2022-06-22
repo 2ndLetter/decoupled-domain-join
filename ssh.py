@@ -18,38 +18,38 @@ from botocore.exceptions import ClientError
 
 #########################
 
-k = paramiko.RSAKey.from_private_key_file("~/.ssh/bootstrap.pem")
+k = paramiko.RSAKey.from_private_key_file("/home/bmchadwick/.ssh/bootstrap.pem")
 c = paramiko.SSHClient()
 c.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-print "connecting"
+print("connecting")
 c.connect( hostname = "100.26.0.23", username = "bootstrap", pkey = k )
-print "connected"
+print("connected")
 commands = [ "./firstscript.sh", "./secondscript.sh" ]
 for command in commands:
-	print "Executing {}".format( command )
+	print("Executing {}".format( command ))
 	stdin , stdout, stderr = c.exec_command(command)
-	print stdout.read()
+	print(stdout.read())
 	print( "Errors")
-	print stderr.read()
+	print(stderr.read())
 c.close()
 
 
 
 
-USERNAME_GET = (output['UserName'])
-PASSWORD_GET = (output['Password'])
+#USERNAME_GET = (output['UserName'])
+#PASSWORD_GET = (output['Password'])
 ### Copy credentials file to server
 
-ssh = paramiko.SSHClient()
-ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-ssh.connect(hostname='IP',username=USERNAME_GET,password=PASSWORD_GET,port=22)
-sftp_client=ssh.open_sftp()
+#ssh = paramiko.SSHClient()
+#ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+#ssh.connect(hostname='IP',username=USERNAME_GET,password=PASSWORD_GET,port=22)
+#sftp_client=ssh.open_sftp()
 
-sftp_client.put('/tmp/credentials','/home/user/.aws/credentials')
-sftp_client.put('/tmp/config','/home/user/.aws/config')
+#sftp_client.put('/tmp/credentials','/home/user/.aws/credentials')
+#sftp_client.put('/tmp/config','/home/user/.aws/config')
 
-sftp_client.close()
-ssh.close()
+#sftp_client.close()
+#ssh.close()
 
 
 

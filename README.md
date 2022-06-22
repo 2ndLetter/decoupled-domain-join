@@ -42,5 +42,6 @@
 ### - [ ] Retrieve AD credentials from S3
 ### - [ ] Connect to ec2 instance via SSH
 ### - [ ] Joins ec2 instance to AD Domain
+### - [ ] Notes: Install paramiko `source ~/venv/bin/activate`, `pip install paramiko`
 ------
 

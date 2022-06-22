@@ -2,4 +2,3 @@
 
 DATE=$(date)
 echo "Today is $DATE"
-
