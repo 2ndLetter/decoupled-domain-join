@@ -1,8 +1,6 @@
-import json
-import boto3
-import base64
+#!/usr/bin/env python3
+
 import paramiko
-from botocore.exceptions import ClientError
 
 # Userdata script:
 # - Returns the private ip address
@@ -24,7 +22,7 @@ c.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 print("connecting")
 c.connect( hostname = "44.206.44.115", username = "bootstrap", pkey = k )
 print("connected")
-commands = [ "./firstscript.sh", "./secondscript.sh" ]
+commands = [ "/home/bmchadwick/work_dir/decoupled-domain-join/firstscript.sh", "/home/bmchadwick/work_dir/decoupled-domain-join/secondscript.sh" ]
 for command in commands:
 	print("Executing {}".format( command ))
 	stdin , stdout, stderr = c.exec_command(command)
