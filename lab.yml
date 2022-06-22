@@ -79,7 +79,7 @@ Resources:
             chmod 600 /home/bootstrap/.ssh/authorized_keys
             
             # Upload private key to s3
-            S3Bucket=$(aws cloudformation list-exports --query "Exports[?Name=='cfn-stack-environment-S3Bucket'].Value" --output text)
+            S3Bucket=$(aws cloudformation list-exports --query "Exports[?Name=='cfn-stack-environment-s3bucket'].Value" --output text)
             aws s3 cp /home/bootstrap/.ssh/bootstrap s3://$S3Bucket/
 
             # Upload AD Credentials to s3

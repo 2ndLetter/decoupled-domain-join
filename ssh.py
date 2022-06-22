@@ -16,11 +16,11 @@ import paramiko
 
 #########################
 
-k = paramiko.RSAKey.from_private_key_file("/home/bmchadwick/.ssh/bootstrap.pem")
+k = paramiko.RSAKey.from_private_key_file("/home/bmchadwick/.ssh/bootstrap")
 c = paramiko.SSHClient()
 c.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 print("connecting")
-c.connect( hostname = "44.206.44.115", username = "bootstrap", pkey = k )
+c.connect( hostname = "44.206.177.56", username = "bootstrap", pkey = k )
 print("connected")
 commands = [ "whoami", "date" ]
 for command in commands:
