@@ -4,7 +4,7 @@
 1. Log into AWS account. I'm using ACloudGuru Cloud Sandbox
 2. Run `aws configure` to configure the aws cli
 3. Run `./environment.sh lab` to create a new keypair 
-4. Add parameters to the parameters/environment.json file (Todo: Create a script to automate this)
+4. Update parameters in the parameters/environment.json file (Todo: Create a script to automate this)
 5. Run `./deploy-cfn.sh -n environment` to deploy the environment resources
 6. Log into the Windows server and [install the AD admin tools](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_install_ad_tools.html) (Todo: Create a script to automate this)
 7. Run `./deploy-cfn.sh -n lab -r` to deploy the lab resources
@@ -33,12 +33,13 @@
 ### - [x] Add public key to temp user
 ### - [x] Upload private key to S3Bucket
 ### - [x] Install Chef Client
-### - [ ] Invoke Lambda Function
+### - [ ] Invoke Lambda Function (payload: private ip address, s3 bucket)
 ### - [ ] Delete temp user
 ------
 ## Lambda Function: (payload: private ssh key + AD domain credentials + private IP address)
-### - [ ] Retrieve private key from Secrets Manager
-### - [ ] Retrieve AD credentials from s3 bucket
+### - [ ] Retrieve private ip address from userdata payload
+### - [ ] Retrieve private ssh key from S3
+### - [ ] Retrieve AD credentials from S3
 ### - [ ] Connect to ec2 instance via SSH
 ### - [ ] Joins ec2 instance to AD Domain
 ------
