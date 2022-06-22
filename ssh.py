@@ -22,7 +22,7 @@ c.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 print("connecting")
 c.connect( hostname = "44.206.44.115", username = "bootstrap", pkey = k )
 print("connected")
-commands = [ "cat /var/log/dnf.log", "time" ]
+commands = [ "whoami", "date" ]
 for command in commands:
 	print("Executing {}".format( command ))
 	stdin , stdout, stderr = c.exec_command(command)
