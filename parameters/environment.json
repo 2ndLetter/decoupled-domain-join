@@ -1,15 +1,15 @@
 [
     {
       "ParameterKey": "VpcId",
-      "ParameterValue": "vpc-076d8dad537646277"
+      "ParameterValue": "vpc-04418d1cb56e21074"
     },
     {
         "ParameterKey": "SubnetIDs",
-        "ParameterValue": "subnet-07c16a1f65b03b874, subnet-0fbc38869a9f542ae"
+        "ParameterValue": "subnet-0bcebc0eff5141c1f, subnet-0aee6518d434085da"
     },
     {
         "ParameterKey": "Password",
-        "ParameterValue": "P@$$Word123!"
+        "ParameterValue": "P@$$Word123"
     },
     {
         "ParameterKey": "ImageId",
