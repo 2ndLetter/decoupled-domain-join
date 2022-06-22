@@ -76,7 +76,7 @@ Resources:
             # Create ssh keys
             runuser -l bootstrap -c "ssh-keygen -q -t rsa -N '' -f /home/bootstrap/.ssh/bootstrap <<<y >/dev/null 2>&1"
             runuser -l bootstrap -c "cat ~/.ssh/bootstrap.pub > ~/.ssh/authorized_keys"
-            
+            chmod 600 /home/bootstrap/.ssh/authorized_keys
             
             # Upload private key to s3
             S3Bucket=$(aws cloudformation list-exports --query "Exports[?Name=='cfn-stack-environment-S3Bucket'].Value" --output text)

@@ -22,7 +22,7 @@ k = paramiko.RSAKey.from_private_key_file("/home/bmchadwick/.ssh/bootstrap.pem")
 c = paramiko.SSHClient()
 c.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 print("connecting")
-c.connect( hostname = "100.26.0.23", username = "bootstrap", pkey = k )
+c.connect( hostname = "44.206.44.115", username = "bootstrap", pkey = k )
 print("connected")
 commands = [ "./firstscript.sh", "./secondscript.sh" ]
 for command in commands:
@@ -155,4 +155,3 @@ c.close()
 #
 #sftp_client.close()
 #ssh.close()
-#
