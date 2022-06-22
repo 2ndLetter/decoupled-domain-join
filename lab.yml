@@ -46,7 +46,7 @@ Resources:
             exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
             
             # Install dependencies
-            dnf install -y unzip wget python3 vim jq
+            dnf install -y unzip wget python3 vim jq sssd realmd krb5-workstation samba-common-tools
 
             # Install aws cli
             curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
