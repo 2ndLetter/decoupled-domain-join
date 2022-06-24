@@ -16,4 +16,8 @@ with io.BytesIO() as f:
     s3_object.download_fileobj(f)
 
     f.seek(0)
-    print(f'Downloaded content:\n{f.read()}')
+    #print(f'Downloaded content:\n{f.read()}')
+    #print(f.read())
+    json_object = json.loads(f.read())
+
+    print(json_object["password"])
