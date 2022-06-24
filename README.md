@@ -3,11 +3,10 @@
 # Steps:
 1. Log into AWS account. I'm using ACloudGuru Cloud Sandbox
 2. Run `aws configure` to configure the aws cli
-3. Run `./environment.sh lab` to create a new keypair 
-4. Update parameters in the parameters/environment.json file (Todo: Create a script to automate this)
-5. Run `./deploy-cfn.sh -n environment` to deploy the environment resources
-6. Log into the Windows server and [install the AD admin tools](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_install_ad_tools.html) (Todo: Create a script to automate this)
-7. Run `./deploy-cfn.sh -n lab -r` to deploy the lab resources
+3. Run `./environment.sh lab` to create a new keypair and configure parameter file
+4. Run `./deploy-cfn.sh -n environment` to deploy the environment resources
+5. Log into the Windows server and [install the AD admin tools](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_install_ad_tools.html) (Todo: Create a script to automate this)
+6. Run `./deploy-cfn.sh -n lab -r` to deploy the lab resources
 
 #
 # Todo:
