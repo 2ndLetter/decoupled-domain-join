@@ -17,7 +17,7 @@ k = paramiko.RSAKey.from_private_key_file("/home/bmchadwick/.ssh/bootstrap")
 c = paramiko.SSHClient()
 c.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 print("connecting")
-c.connect( hostname = "44.205.134.62", username = "bootstrap", pkey = k )
+c.connect( hostname = "52.71.217.243", username = "bootstrap", pkey = k )
 print("connected")
 commands = [ "echo \"P@\$\$Word123\" | sudo realm join -v -U admin lab.example.com", "date" ]
 #commands = [ "echo \"P@\$\$Word123\" | sudo realm leave -v -U admin lab.example.com", "date" ]
