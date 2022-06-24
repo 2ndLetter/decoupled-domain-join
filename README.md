@@ -10,6 +10,7 @@
 7. (If testing locally) Run `./downloadpem.sh` to download the bootstrap pem file
 
 # paramiko 2.11.0 used: https://pypi.org/project/paramiko/
+# Fabric: https://www.fabfile.org/
 
 #
 # Todo:
