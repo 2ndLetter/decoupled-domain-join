@@ -86,6 +86,17 @@ Resources:
             echo "{\"username\":\"admin\",\"domain\":\"lab.example.com\",\"password\":\"P@\$\$Word123\"}" | jq > /tmp/passwords.json
             aws s3 cp /tmp/passwords.json s3://$S3Bucket/
 
+            # Return DNS address
+            DIRECTORY_ID=$(aws ds describe-directories | jq -r '.DirectoryDescriptions[]' | jq -r '.DirectoryId')
+            DNS_ADDRESS=$(aws ds describe-domain-controllers --directory -id $DIRECTORY_ID | jq -r '.DomainControllers[0]' | jq -r '.DnsIpAddr')
+            
+            # Configure DNS           
+            echo "[main]" > /etc/NetworkManager/conf.d/disable-resolve.conf-managing.conf
+            echo "dns=none" >> /etc/NetworkManager/conf.d/disable-resolve.conf-managing.conf
+            echo "search ec2.internal" > /etc/resolv.conf
+            echo "nameserver $DNS_ADDRESS" >> /etc/resolv.conf
+            
+            
             echo "bootstrap script completed"
 
             /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource EC2Instance --region ${AWS::Region}

@@ -7,6 +7,7 @@
 4. Run `./deploy-cfn.sh -n environment` to deploy the environment resources
 5. Log into the Windows server and [install the AD admin tools](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_install_ad_tools.html) (Todo: Create a script to automate this)
 6. Run `./deploy-cfn.sh -n lab -r` to deploy the lab resources
+7. (If testing locally) Run `./downloadpem.sh` to download the bootstrap pem file
 
 #
 # Todo:
