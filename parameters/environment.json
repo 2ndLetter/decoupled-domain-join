@@ -1,0 +1,18 @@
+[
+    {
+      "ParameterKey": "VpcId",
+      "ParameterValue": "vpc-061ad3f6c736f4863"
+    },
+    {
+        "ParameterKey": "SubnetIDs",
+        "ParameterValue": "subnet-0bebe9e1e55a68568, subnet-077861d8043fd94bc"
+    },
+    {
+        "ParameterKey": "Password",
+        "ParameterValue": "P@$$Word123"
+    },
+    {
+        "ParameterKey": "ImageId",
+        "ParameterValue": "ami-041306c411c38a789"
+    }
+]

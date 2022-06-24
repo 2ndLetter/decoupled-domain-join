@@ -1,7 +1,12 @@
-#!/bin/bash -xe
+#!/bin/bash -e
 
-# Remove old keypair
+set +e
+# Remove local keypair
 rm -fr ~/.ssh/$1.pem ~/.ssh/$1.pub
+
+# Delete aws keypair
+aws ec2 delete-key-pair --key-name $1
+set -e
 
 # Create keypair in aws account and local ~/.ssh folder
 aws ec2 create-key-pair --key-name $1 --query "KeyMaterial" --output text > ~/.ssh/$1.pem
