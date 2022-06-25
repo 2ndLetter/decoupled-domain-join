@@ -1,5 +1,8 @@
 #!/bin/bash -e
 
+# Run from within Cloud9 (or an AWS Linux 2 ec2 instance)
+# create within a python virtual environment
+
 packageArray=("bcrypt" "cffi" "cryptography" "paramiko" "pycparser" "PyNaCl" "six")
 
 for i in ${packageArray[@]};

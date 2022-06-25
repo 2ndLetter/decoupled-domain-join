@@ -2,5 +2,5 @@
     "aws_region": "us-east-1",
     "s3_object_pw": "passwords.json",
     "s3_object_k": "bootstrap",
-    "s3_bucket_name": "cfn-stack-environment-s3bucket-11s3cfqbuf9jr"
+    "s3_bucket_name": "cfn-stack-environment-s3bucket-1qp80g3q3yvqu"
 }
