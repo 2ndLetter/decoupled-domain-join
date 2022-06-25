@@ -77,10 +77,10 @@ Resources:
       Tags:
         - Key: "Name"
           Value: "Windows_Server"
-    CreationPolicy:
-      ResourceSignal:
-        Count: 1
-        Timeout: PT15M
+    #CreationPolicy:
+    #  ResourceSignal:
+    #    Count: 1
+    #    Timeout: PT15M
 
   EC2InstanceRole:
     Type: 'AWS::IAM::Role'
