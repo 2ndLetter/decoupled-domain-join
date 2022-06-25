@@ -16,7 +16,8 @@
 ### - [x] S3 bucket for SSH keypairs 
 ### - [x] Microsoft AD
 ### - [x] Server 2019
-### - [ ] Lambda Function
+### - [ ] Create Lambda Function
+### - [ ] Create Lambda Layer
 ------
 ## Environment Script:
 ### - [x] Create ec2 keypair
@@ -41,8 +42,8 @@
 ### - [ ] Retrieve private ip address from userdata payload (via aws lambda)
 ### - [x] Retrieve private ssh key from S3 (via aws lambda)
 ### - [x] Retrieve AD credentials from S3 (via aws lambda)
-### - [ ] Connect to ec2 instance via SSH (via aws lambda)
-### - [ ] Joins ec2 instance to AD Domain (via aws lambda)
+### - [x] Connect to ec2 instance via SSH (via aws lambda)
+### - [x] Joins ec2 instance to AD Domain (via aws lambda)
 ### - [ ] Put it all together (via CloudFormation)
 ------
 ## Notes:
