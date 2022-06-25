@@ -49,6 +49,6 @@
 ## Notes:
 ### - Install paramiko: `pip install paramiko`
 ### - Work within venv: `source ~/venv/bin/activate`
-### - Manual Steps: Create IAM Role, Security Group, Create Lambda Function, 30s timeout, test event, package up dependencies or create lambda layer
+### - Manual Steps: Create IAM Role, Security Group, Create Lambda Function (30s timeout, test event), package up dependencies or create lambda layer
 
 
