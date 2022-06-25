@@ -44,6 +44,10 @@
 ### - [ ] Connect to ec2 instance via SSH (via aws lambda)
 ### - [ ] Joins ec2 instance to AD Domain (via aws lambda)
 ### - [ ] Put it all together (via CloudFormation)
-### - [ ] Notes: Install paramiko `source ~/venv/bin/activate`, `pip install paramiko`
 ------
+## Notes:
+### - Install paramiko: `pip install paramiko`
+### - Work within venv: `source ~/venv/bin/activate`
+### - Manual Steps: Create IAM Role, Security Group, Create Lambda Function, 30s timeout, test event, package up dependencies or create lambda layer
+
 
