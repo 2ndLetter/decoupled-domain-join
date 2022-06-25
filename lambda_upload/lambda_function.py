@@ -26,13 +26,19 @@ def lambda_handler(event, context):
             f.seek(0)
             #print(f.read())
             ssh_key = (f.read())
-            print(ssh_key)
+            #print(ssh_key)
             ssh_key_str = ssh_key.decode(encoding="utf-8")
-            print(ssh_key_str)
-            return ssh_key_str
+            print(type(ssh_key_str))
+            #return ssh_key_str
+            file = open("/tmp/bootstrap.pem", "w")
+            file.write(ssh_key_str)
+            file.close
 
-    def ssh(ssh_key):
-        k = paramiko.RSAKey.from_private_key(ssh_key)
+
+    def ssh():
+        k = paramiko.RSAKey.from_private_key_file("/tmp/bootstrap.pem")
+        
+        #k = paramiko.RSAKey.from_private_key(ssh_key)
         
         #k = paramiko.RSAKey.from_private_key_file("/home/bmchadwick/.ssh/bootstrap")
         c = paramiko.SSHClient()
@@ -56,8 +62,8 @@ def lambda_handler(event, context):
     def main():
         # return ssh key
         ssh_key = get_ssh_key()
-        print(ssh_key_str)
-        ssh(ssh_key_str)
+        print(ssh_key)
+        ssh()
 
 
     main()
