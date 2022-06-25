@@ -6,7 +6,7 @@ echo "Removing local private key"
 rm -fr ~/.ssh/$1.pem ~/.ssh/$1.pub
 
 # Delete aws keypair
-echo "Deleted aws keypair if it exists"
+echo "Deleting aws keypair if it exists"
 aws ec2 delete-key-pair --key-name $1
 set -e
 
