@@ -38,11 +38,12 @@
 ### - [ ] Delete temp user
 ------
 ## Lambda Function: (payload: private ssh key + AD domain credentials + private IP address)
-### - [ ] Retrieve private ip address from userdata payload
-### - [ ] Retrieve private ssh key from S3
-### - [ ] Retrieve AD credentials from S3
-### - [ ] Connect to ec2 instance via SSH
-### - [ ] Joins ec2 instance to AD Domain
+### - [ ] Retrieve private ip address from userdata payload (via aws lambda)
+### - [x] Retrieve private ssh key from S3 (via aws lambda)
+### - [x] Retrieve AD credentials from S3 (via aws lambda)
+### - [ ] Connect to ec2 instance via SSH (via aws lambda)
+### - [ ] Joins ec2 instance to AD Domain (via aws lambda)
+### - [ ] Put it all together (via CloudFormation)
 ### - [ ] Notes: Install paramiko `source ~/venv/bin/activate`, `pip install paramiko`
 ------
 
