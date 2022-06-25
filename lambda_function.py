@@ -44,7 +44,7 @@ def lambda_handler(event, context):
         c = paramiko.SSHClient()
         c.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         print("connecting")
-        c.connect( hostname = "54.227.178.138", username = "bootstrap", pkey = k )
+        c.connect( hostname = "172.31.4.80", username = "bootstrap", pkey = k )
         print("connected")
         
         commands = [ "date", "sleep 5", "date" ]
