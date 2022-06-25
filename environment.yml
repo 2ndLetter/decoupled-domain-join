@@ -32,6 +32,9 @@ Parameters:
     Default: 0.0.0.0/0
     AllowedPattern: '(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})'
     ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
+  RouteTable:
+    Description: Route Table Id
+    Type: String
 
 Resources:
   s3bucket:
@@ -74,6 +77,10 @@ Resources:
       Tags:
         - Key: "Name"
           Value: "Windows_Server"
+    CreationPolicy:
+      ResourceSignal:
+        Count: 1
+        Timeout: PT15M
 
   EC2InstanceRole:
     Type: 'AWS::IAM::Role'
@@ -92,11 +99,6 @@ Resources:
         - !Sub arn:${AWS::Partition}:iam::aws:policy/AmazonS3FullAccess
         - !Sub arn:${AWS::Partition}:iam::aws:policy/AmazonEC2ReadOnlyAccess
         - !Sub arn:${AWS::Partition}:iam::aws:policy/AWSCloudFormationReadOnlyAccess
-    #CreationPolicy:
-    #  ResourceSignal:
-    #    Count: 1
-    #    Timeout: PT60M
-
 
   EC2InstanceProfile:
     Type: 'AWS::IAM::InstanceProfile'
@@ -115,10 +117,13 @@ Resources:
           ToPort: '3389'
           CidrIp: !Ref RDPLocation
 
-
-
-
-
+  S3GatewayEndpoint:
+    Type: 'AWS::EC2::VPCEndpoint'
+    Properties:
+      RouteTableIds:
+        - !Ref RouteTable
+      ServiceName: !Sub 'com.amazonaws.${AWS::Region}.s3'
+      VpcId: !Ref VpcId
 
 Outputs:
   s3bucket:

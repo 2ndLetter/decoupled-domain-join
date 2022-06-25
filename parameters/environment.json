@@ -1,11 +1,11 @@
 [
     {
       "ParameterKey": "VpcId",
-      "ParameterValue": "vpc-0c77250c52e1c1047"
+      "ParameterValue": "vpc-0318f6b96f8d636b4"
     },
     {
         "ParameterKey": "SubnetIDs",
-        "ParameterValue": "subnet-0fee921ac3b558e8b, subnet-01be3bcf69200422d"
+        "ParameterValue": "subnet-0454066dbaec28238, subnet-031c78e0172bb05ac"
     },
     {
         "ParameterKey": "Password",
@@ -14,5 +14,9 @@
     {
         "ParameterKey": "ImageId",
         "ParameterValue": "ami-041306c411c38a789"
+    },
+    {
+        "ParameterKey": "RouteTable",
+        "ParameterValue": "rtb-0a896df6820f4f807"
     }
 ]

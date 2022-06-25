@@ -9,8 +9,7 @@
 6. Run `./deploy-cfn.sh -n lab -r` to deploy the lab resources
 7. (If testing locally) Run `./downloadpem.sh` to download the bootstrap pem file
 
-- [paramiko 2.11.0](https://pypi.org/project/paramiko/)
-- [Fabric](https://www.fabfile.org/)
+- Python module imported: [paramiko 2.11.0](https://pypi.org/project/paramiko/)
 
 # Todo:
 ## Environment CloudFormation Stack:

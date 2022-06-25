@@ -24,6 +24,10 @@ echo "Returning two subnets"
 SUBNET_A=$(aws ec2 describe-subnets | jq -r '.Subnets[0]' | jq -r '.SubnetId')
 SUBNET_B=$(aws ec2 describe-subnets | jq -r '.Subnets[1]' | jq -r '.SubnetId')
 
+# Return Route Table
+echo "Returning route table"
+ROUTE_TABLE=$(aws ec2 describe-route-tables | jq -r '.RouteTables[0]' | jq -r '.RouteTableId')
+
 # Configure parameters file
 echo "Configuring parameter file"
 cp environment_template.json parameters/environment.json
@@ -31,5 +35,6 @@ cp environment_template.json parameters/environment.json
 sed -i "s/VPC_ID/$VPC/" parameters/environment.json
 sed -i "s/SUBNET_A/$SUBNET_A/" parameters/environment.json
 sed -i "s/SUBNET_B/$SUBNET_B/" parameters/environment.json
+sed -i "s/ROUTE_TABLE/$ROUTE_TABLE/" parameters/environment.json
 
 echo "Script completed successfully!"

@@ -14,5 +14,9 @@
     {
         "ParameterKey": "ImageId",
         "ParameterValue": "ami-041306c411c38a789"
+    },
+    {
+        "ParameterKey": "RouteTable",
+        "ParameterValue": "ROUTE_TABLE"
     }
 ]
