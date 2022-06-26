@@ -38,7 +38,6 @@ def lambda_handler(event, context):
             f.seek(0)
             ssh_key = (f.read())
             ssh_key_str = ssh_key.decode(encoding="utf-8")
-            #print(ssh_key_str)
             file = open("/tmp/bootstrap.pem", "w")
             file.write(ssh_key_str)
             file.close
@@ -46,21 +45,14 @@ def lambda_handler(event, context):
     def ssh(arg1, arg2, arg3):
         priv_ip_addr = event['ip_address']
         user_name = event['s3_object_k']
-        #print(arg1)
-        #print(arg2)
-        #print(arg3)
         env_dict={"LC_NAME":arg1,"LC_IDENTIFICATION":arg2,"LC_ADDRESS":arg3}
         k = paramiko.RSAKey.from_private_key_file("/tmp/bootstrap.pem")
         c = paramiko.SSHClient()
         c.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         print("connecting")
-        #c.connect( hostname = "172.31.4.242", username = "bootstrap", pkey = k )
-        #c.connect( hostname = priv_ip_addr, username = "bootstrap", pkey = k )
         c.connect( hostname = priv_ip_addr, username = user_name, pkey = k )
         print("connected")
-        #commands = [ "echo $LC_NAME", "echo $LC_IDENTIFICATION", "echo $LC_ADDRESS" ]
         #commands = [ "date", "sleep 5", "date" ]
-        #commands = [ "echo \"P@\$\$Word123\" | sudo realm join -v -U admin lab.example.com", "sleep 5", "echo \"P@\$\$Word123\" | sudo realm leave -v -U admin lab.example.com" ]
         commands = [ "echo \"$LC_IDENTIFICATION\" | sudo realm join -v -U $LC_NAME $LC_ADDRESS", "sleep 5", "echo \"$LC_IDENTIFICATION\" | sudo realm leave -v -U $LC_NAME $LC_ADDRESS" ]
 
         for command in commands:
