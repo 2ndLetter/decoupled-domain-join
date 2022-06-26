@@ -68,9 +68,11 @@ Resources:
                 -ArgumentList "/S"
             rm -Force $env:USERPROFILE\Desktop\SSMAgent_latest.exe
             Restart-Service AmazonSSMAgent
-
             # Start PowerShell Here
-
+            <powershell>
+            msiexec.exe /i https://awscli.amazonaws.com/AWSCLIV2.msi /quiet
+            Add-Computer -ComputerName Server01 -LocalCredential Server01\Admin01 -DomainName lab.example.com -Credential lab.example.com\User -Restart -Force
+            <powershell>
       SecurityGroups:
         - !Ref InstanceSecurityGroup
       ImageId: !Ref ImageId
