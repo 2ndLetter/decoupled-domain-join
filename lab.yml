@@ -96,6 +96,11 @@ Resources:
             echo "search ec2.internal" > /etc/resolv.conf
             echo "nameserver $DNS_ADDRESS" >> /etc/resolv.conf
             
+            # Prepare payload.json
+            # echo 
+            
+            # Invoke function
+            aws lambda invoke --function-name lambda --cli-binary-format raw-in-base64-out --invocation-type RequestResponse --payload file://payload.json response.json
             
             echo "bootstrap script completed"
 
