@@ -38,7 +38,7 @@
 ### - [x] Add public key to temp user
 ### - [x] Upload private key to S3Bucket
 ### - [x] Install Chef Client
-### - [ ] Invoke Lambda Function (payload: private ip address, s3 bucket)
+### - [ ] Invoke Lambda Function (payload: private ip, s3 bucket, username, passwords.json)
 ### - [ ] Delete temp user
 ------
 ## Lambda Function: (payload: private ssh key + AD domain credentials + private IP address)
