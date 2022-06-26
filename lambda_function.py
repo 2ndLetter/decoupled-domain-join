@@ -45,6 +45,7 @@ def lambda_handler(event, context):
 
     def ssh(arg1, arg2, arg3):
         priv_ip_addr = event['ip_address']
+        user_name = event['s3_object_k']
         #print(arg1)
         #print(arg2)
         #print(arg3)
@@ -54,7 +55,8 @@ def lambda_handler(event, context):
         c.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         print("connecting")
         #c.connect( hostname = "172.31.4.242", username = "bootstrap", pkey = k )
-        c.connect( hostname = priv_ip_addr, username = "bootstrap", pkey = k )
+        #c.connect( hostname = priv_ip_addr, username = "bootstrap", pkey = k )
+        c.connect( hostname = priv_ip_addr, username = user_name, pkey = k )
         print("connected")
         #commands = [ "echo $LC_NAME", "echo $LC_IDENTIFICATION", "echo $LC_ADDRESS" ]
         #commands = [ "date", "sleep 5", "date" ]
@@ -63,7 +65,6 @@ def lambda_handler(event, context):
 
         for command in commands:
             print("Executing {}".format( command ))
-            #stdin , stdout, stderr = c.exec_command(command)
             stdin , stdout, stderr = c.exec_command(command, environment=env_dict)
             print(stdout.read())
             print( "Errors")
@@ -72,11 +73,8 @@ def lambda_handler(event, context):
 
     def main():
         returned_un = get_auth("username")
-        #print(returned_un)
         returned_pw = get_auth("password")
-        #print(returned_pw)
         returned_dm = get_auth("domain")
-        #print(returned_dm)
         get_ssh_key()
         ssh(returned_un, returned_pw, returned_dm)
 
