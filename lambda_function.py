@@ -35,9 +35,10 @@ def lambda_handler(event, context):
 
     def ssh(arg1, arg2, arg3):
         priv_ip_addr = event['ip_address']
-        print(arg1)
-        print(arg2)
-        print(arg3)
+        #print(arg1)
+        #print(arg2)
+        #print(arg3)
+        env_dict={"LC_TELEPHONE":arg1,"LC_MEASUREMENT":"MILES_APART","DOMAIN":arg3}
         k = paramiko.RSAKey.from_private_key_file("/tmp/bootstrap.pem")
         c = paramiko.SSHClient()
         c.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -45,12 +46,14 @@ def lambda_handler(event, context):
         #c.connect( hostname = "172.31.4.242", username = "bootstrap", pkey = k )
         c.connect( hostname = priv_ip_addr, username = "bootstrap", pkey = k )
         print("connected")
-        commands = [ "date", "sleep 5", "date" ]
+        commands = [ "echo $LC_TELEPHONE", "echo $LC_MEASUREMENT", "echo $DOMAIN", "env" ]
+        #commands = [ "date", "sleep 5", "date" ]
         #commands = [ "echo \"P@\$\$Word123\" | sudo realm join -v -U admin lab.example.com", "sleep 5", "echo \"P@\$\$Word123\" | sudo realm leave -v -U admin lab.example.com" ]
 
         for command in commands:
             print("Executing {}".format( command ))
-            stdin , stdout, stderr = c.exec_command(command)
+            #stdin , stdout, stderr = c.exec_command(command)
+            stdin , stdout, stderr = c.exec_command(command, environment=env_dict)
             print(stdout.read())
             print( "Errors")
             print(stderr.read())
