@@ -38,7 +38,7 @@ def lambda_handler(event, context):
         c = paramiko.SSHClient()
         c.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         print("connecting")
-        c.connect( hostname = "172.31.7.204", username = "bootstrap", pkey = k )
+        c.connect( hostname = "172.31.4.242", username = "bootstrap", pkey = k )
         print("connected")
         #commands = [ "date", "sleep 5", "date" ]
         commands = [ "echo \"P@\$\$Word123\" | sudo realm join -v -U admin lab.example.com", "sleep 5", "echo \"P@\$\$Word123\" | sudo realm leave -v -U admin lab.example.com" ]
