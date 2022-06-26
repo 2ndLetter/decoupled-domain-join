@@ -19,6 +19,7 @@ def lambda_handler(event, context):
     #print(event['s3_object_pw'])
     #print(event['s3_object_k'])
     #print(event['s3_bucket_name'])
+    #print(event['ip_address'])
 
     def get_auth(arg1):
         s3_resource = boto3.resource("s3", region_name=event['aws_region'])
