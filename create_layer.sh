@@ -34,5 +34,5 @@ echo "Upload to s3"
 S3Bucket=$(aws s3 ls | grep cfn-stack | awk '{print $NF}')
 aws s3 cp python.zip s3://$S3Bucket
 
-echo "deactivate venv"
+echo "deactivating python virtual environment"
 deactivate

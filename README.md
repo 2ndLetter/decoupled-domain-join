@@ -5,9 +5,10 @@
 2. Run `aws configure` to configure the aws cli
 3. Run `./environment.sh lab` to create a new keypair and configure parameter file
 4. Run `./deploy-cfn.sh -n environment` to deploy the environment resources
-5. Log into the Windows server and [install the AD admin tools](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_install_ad_tools.html) (Todo: Create a script to automate this)
-6. Run `./deploy-cfn.sh -n lab -r` to deploy the lab resources
-7. (If testing locally) Run `./downloadpem.sh` to download the bootstrap pem file
+5. Create a Cloud9 environment > Copy the create_layer.sh script into a file within the IDE > Run `./create_layer.sh`
+6. Log into the Windows server and [install the AD admin tools](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_install_ad_tools.html) (Todo: Create a script to automate this)
+7. Run `./deploy-cfn.sh -n lab -r` to deploy the lab resources
+8. (If testing locally) Run `./downloadpem.sh` to download the bootstrap pem file
 
 - Python module imported: [paramiko 2.11.0](https://pypi.org/project/paramiko/)
 
@@ -47,8 +48,7 @@
 ### - [ ] Put it all together (via CloudFormation)
 ------
 ## Notes:
-### - Install paramiko: `pip install paramiko`
 ### - Work within venv: `source ~/venv/bin/activate`
-### - Manual Steps: Create IAM Role, Security Group, Create Lambda Function (30s timeout, test event), package up dependencies or create lambda layer
+### - Manual Steps: Create IAM Role, Security Group, Create Lambda Function (30s timeout, test event), lambda layer
 
 

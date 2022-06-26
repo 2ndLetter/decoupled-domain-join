@@ -2,6 +2,6 @@
     "aws_region": "us-east-1",
     "s3_object_pw": "passwords.json",
     "s3_object_k": "bootstrap",
-    "s3_bucket_name": "cfn-stack-environment-s3bucket-mns7cntqga7a",
-    "ip_address": "172.31.4.242"
+    "s3_bucket_name": "cfn-stack-environment-s3bucket-15kzhroaott17",
+    "ip_address": "172.31.0.224"
 }
