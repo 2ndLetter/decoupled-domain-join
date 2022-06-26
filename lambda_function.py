@@ -33,15 +33,20 @@ def lambda_handler(event, context):
             file.write(ssh_key_str)
             file.close
 
-    def ssh():
+    def ssh(arg1, arg2, arg3):
+        priv_ip_addr = event['ip_address']
+        print(arg1)
+        print(arg2)
+        print(arg3)
         k = paramiko.RSAKey.from_private_key_file("/tmp/bootstrap.pem")
         c = paramiko.SSHClient()
         c.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         print("connecting")
-        c.connect( hostname = "172.31.4.242", username = "bootstrap", pkey = k )
+        #c.connect( hostname = "172.31.4.242", username = "bootstrap", pkey = k )
+        c.connect( hostname = priv_ip_addr, username = "bootstrap", pkey = k )
         print("connected")
-        #commands = [ "date", "sleep 5", "date" ]
-        commands = [ "echo \"P@\$\$Word123\" | sudo realm join -v -U admin lab.example.com", "sleep 5", "echo \"P@\$\$Word123\" | sudo realm leave -v -U admin lab.example.com" ]
+        commands = [ "date", "sleep 5", "date" ]
+        #commands = [ "echo \"P@\$\$Word123\" | sudo realm join -v -U admin lab.example.com", "sleep 5", "echo \"P@\$\$Word123\" | sudo realm leave -v -U admin lab.example.com" ]
 
         for command in commands:
             print("Executing {}".format( command ))
@@ -53,12 +58,12 @@ def lambda_handler(event, context):
 
     def main():
         returned_un = get_auth("username")
-        print(returned_un)
+        #print(returned_un)
         returned_pw = get_auth("password")
-        print(returned_pw)
+        #print(returned_pw)
         returned_dm = get_auth("domain")
-        print(returned_dm)
+        #print(returned_dm)
         get_ssh_key()
-        ssh()
+        ssh(returned_un, returned_pw, returned_dm)
 
     main()
