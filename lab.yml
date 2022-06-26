@@ -105,6 +105,9 @@ Resources:
             # Invoke function to add to domain
             aws lambda invoke --function-name lambda --cli-binary-format raw-in-base64-out --invocation-type RequestResponse --payload file:///tmp/payload.json response.json
             
+            # Delete temporary user
+            userdel -r bootstrap
+
             echo "bootstrap script completed"
 
             /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource EC2Instance --region ${AWS::Region}
