@@ -69,6 +69,8 @@ Resources:
             rm -Force $env:USERPROFILE\Desktop\SSMAgent_latest.exe
             Restart-Service AmazonSSMAgent
 
+            # Start PowerShell Here
+
       SecurityGroups:
         - !Ref InstanceSecurityGroup
       ImageId: !Ref ImageId
