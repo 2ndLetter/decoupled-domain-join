@@ -28,12 +28,12 @@ def lambda_handler(event, context):
             f.seek(0)
             ssh_key = (f.read())
             ssh_key_str = ssh_key.decode(encoding="utf-8")
-            print(type(ssh_key_str))
+            #print(ssh_key_str)
             file = open("/tmp/bootstrap.pem", "w")
             file.write(ssh_key_str)
             file.close
 
-    def ssh(user_name, domain, password):
+    def ssh():
         k = paramiko.RSAKey.from_private_key_file("/tmp/bootstrap.pem")
         c = paramiko.SSHClient()
         c.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -52,15 +52,13 @@ def lambda_handler(event, context):
         c.close()
 
     def main():
-        returned_output = get_auth("username")
-        print(returned_output)
-        returned_output = get_auth("password")
-        print(returned_output)
-        returned_output = get_auth("domain")
-        print(returned_output)
-        #print(username)
-        #get_auth()
-        #get_ssh_key()
-        #ssh()
+        returned_un = get_auth("username")
+        print(returned_un)
+        returned_pw = get_auth("password")
+        print(returned_pw)
+        returned_dm = get_auth("domain")
+        print(returned_dm)
+        get_ssh_key()
+        ssh()
 
     main()
