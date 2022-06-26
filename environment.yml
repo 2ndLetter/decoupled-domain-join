@@ -40,7 +40,6 @@ Resources:
   s3bucket:
     Type: 'AWS::S3::Bucket'
 
-
   ActiveDirectory:
     Type: AWS::DirectoryService::MicrosoftAD
     Properties:
@@ -102,6 +101,20 @@ Resources:
         - !Sub arn:${AWS::Partition}:iam::aws:policy/AmazonEC2ReadOnlyAccess
         - !Sub arn:${AWS::Partition}:iam::aws:policy/AWSCloudFormationReadOnlyAccess
 
+  #LambdaFunctionRole:
+  #  Type: 'AWS::IAM::Role'
+  #  Properties:
+  #    AssumeRolePolicyDocument:
+  #      Version: 2012-10-17
+  #      Statement:
+  #        - Effect: Allow
+  #          Principal:
+  #            Service: lambda.amazonaws.com
+  #          Action: ['sts:AssumeRole']
+  #    Path: /
+  #    ManagedPolicyArns:
+  #      - !Sub arn:${AWS::Partition}:iam::aws:policy/AdministratorAccess
+
   EC2InstanceProfile:
     Type: 'AWS::IAM::InstanceProfile'
     Properties:
@@ -119,6 +132,16 @@ Resources:
           ToPort: '3389'
           CidrIp: !Ref RDPLocation
 
+  #LambdaSecurityGroup:
+  #  Type: 'AWS::EC2::SecurityGroup'
+  #  Properties:
+  #    GroupDescription: Enable Lambda access
+  #    SecurityGroupIngress:
+  #      - IpProtocol: -1
+  #        FromPort: '-1'
+  #        ToPort: '-1'
+  #        CidrIp: !Ref RDPLocation
+
   S3GatewayEndpoint:
     Type: 'AWS::EC2::VPCEndpoint'
     Properties:
@@ -126,6 +149,24 @@ Resources:
         - !Ref RouteTable
       ServiceName: !Sub 'com.amazonaws.${AWS::Region}.s3'
       VpcId: !Ref VpcId
+
+  #Function:
+  #  Type: AWS::Lambda::Function
+  #  Properties:
+  #    FunctionName: lambda
+  #    Handler: lambda_function.lambda_handler
+  #    Role: !GetAtt LambdaFunctionRole.Arn
+  #    Code:
+  #      S3Bucket: !Ref s3bucket
+  #      S3Key: python_function.zip
+  #    Runtime: python3.9
+  #    Timeout: 45
+  #    VpcConfig:
+  #      SecurityGroupIds:
+  #        - !GetAtt LambdaSecurityGroup.GroupId
+  #      #SubnetIds: !Ref SubnetIDs
+  #        #- subnet-071f712345678e7c8
+  #        #- subnet-07fd123456788a036
 
 Outputs:
   s3bucket:

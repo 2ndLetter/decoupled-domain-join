@@ -106,7 +106,7 @@ Resources:
             aws lambda invoke --function-name lambda --cli-binary-format raw-in-base64-out --invocation-type RequestResponse --payload file:///tmp/payload.json response.json
             
             # Delete temporary user
-            userdel -r bootstrap
+            #userdel -r bootstrap
 
             echo "bootstrap script completed"
 

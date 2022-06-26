@@ -28,11 +28,11 @@ do
 done
 
 echo "Zip up packages for upload/import"
-zip -r python.zip python/
+zip -r python_layer.zip python/
 
 echo "Upload to s3"
 S3Bucket=$(aws s3 ls | grep cfn-stack | awk '{print $NF}')
-aws s3 cp python.zip s3://$S3Bucket
+aws s3 cp python_layer.zip s3://$S3Bucket
 
 echo "deactivating python virtual environment"
 deactivate

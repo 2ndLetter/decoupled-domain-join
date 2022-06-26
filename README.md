@@ -6,25 +6,27 @@
 3. Run `./environment.sh lab` to create a new keypair and configure parameter file
 4. Run `./deploy-cfn.sh -n environment` to deploy the environment resources
 5. Create a Cloud9 environment > Copy the create_layer.sh script into a file within the IDE > Run `./create_layer.sh`
-6. Log into the Windows server and [install the AD admin tools](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_install_ad_tools.html) (Todo: Create a script to automate this)
+6. Run `./function.sh` to zip the python script, upload it to s3, and configure the parameters file
 7. Run `./deploy-cfn.sh -n lab -r` to deploy the lab resources
-8. (If testing locally) Run `./downloadpem.sh` to download the bootstrap pem file
+8. (Optional) Log into the Windows server and [install the AD admin tools](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_install_ad_tools.html) (Todo: Create a script to automate this)
+9. (Optional) Run `./downloadpem.sh` to download the bootstrap pem file and test locally
 
 - Python module imported: [paramiko 2.11.0](https://pypi.org/project/paramiko/)
 
 # Todo:
+## Environment Script:
+### - [x] Create ec2 keypair
+### - [x] Upload AD credentials to s3 bucket
+### - [ ] Upload Code to S3
+------
 ## Environment CloudFormation Stack:
 ### - [x] S3 bucket for SSH keypairs 
 ### - [x] Microsoft AD
 ### - [x] Server 2019
-### - [ ] Create Lambda Function
-### - [ ] Create Lambda Layer
-### - [ ] Create IAM Role
-### - [ ] Create Security group
-------
-## Environment Script:
-### - [x] Create ec2 keypair
-### - [x] Upload AD credentials to s3 bucket
+### - [x] Create Lambda Function
+### - [x] Create Lambda Layer
+### - [x] Create IAM Role
+### - [x] Create Security group
 ------
 ## Lab CloudFormation Stack:
 ### - [x] RHEL8 Instance (userdata)

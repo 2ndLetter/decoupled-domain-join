@@ -1,0 +1,6 @@
+[
+    {
+        "ParameterKey": "SubnetIDs",
+        "ParameterValue": "SUBNET_A, SUBNET_B"
+    }
+]
