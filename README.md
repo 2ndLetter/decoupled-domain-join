@@ -38,11 +38,11 @@
 ### - [x] Add public key to temp user
 ### - [x] Upload private key to S3Bucket
 ### - [x] Install Chef Client
-### - [ ] Invoke Lambda Function (payload: private ip, s3 bucket, username, passwords.json)
+### - [x] Invoke Lambda Function (payload: private ip, s3 bucket, username, passwords.json)
 ### - [ ] Delete temp user
 ------
 ## Lambda Function: (payload: private ssh key + AD domain credentials + private IP address)
-### - [ ] Retrieve private ip address and s3 bucket from userdata payload (via aws lambda)
+### - [x] Retrieve private ip address and s3 bucket from userdata payload (via aws lambda)
 ### - [x] Retrieve private ssh key from S3 (via aws lambda)
 ### - [x] Retrieve AD credentials from S3 (via aws lambda)
 ### - [x] Connect to ec2 instance via SSH (via aws lambda)

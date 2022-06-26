@@ -97,10 +97,13 @@ Resources:
             echo "nameserver $DNS_ADDRESS" >> /etc/resolv.conf
             
             # Prepare payload.json
-            # echo 
-            
-            # Invoke function
-            aws lambda invoke --function-name lambda --cli-binary-format raw-in-base64-out --invocation-type RequestResponse --payload file://payload.json response.json
+            S3Bucket=$(aws cloudformation list-exports --query "Exports[?Name=='cfn-stack-environment-s3bucket'].Value" --output text)
+            IPADD=$(curl http://169.254.169.254/latest/meta-data/local-ipv4/)
+            REGION=$(curl http://169.254.169.254/latest/dynamic/instance-identity/document | jq -r .region)
+            echo "{\"aws_region\":\"$REGION\",\"s3_object_pw\":\"passwords.json\",\"s3_object_k\":\"bootstrap\",\"ip_address\":\"$IPADD\",\"s3_bucket_name\":\"$S3Bucket\"}" | jq > /tmp/payload.json
+
+            # Invoke function to add to domain
+            aws lambda invoke --function-name lambda --cli-binary-format raw-in-base64-out --invocation-type RequestResponse --payload file:///tmp/payload.json response.json
             
             echo "bootstrap script completed"
 
@@ -141,6 +144,7 @@ Resources:
         - !Sub arn:${AWS::Partition}:iam::aws:policy/AmazonEC2ReadOnlyAccess
         - !Sub arn:${AWS::Partition}:iam::aws:policy/AWSDirectoryServiceReadOnlyAccess
         - !Sub arn:${AWS::Partition}:iam::aws:policy/AWSCloudFormationReadOnlyAccess
+        - !Sub arn:${AWS::Partition}:iam::aws:policy/AWSLambda_FullAccess
 
   EC2InstanceProfile:
     Type: 'AWS::IAM::InstanceProfile'
