@@ -7,16 +7,18 @@ def lambda_handler(event, context):
 
     #print(event['aws_region'])
     #print(event['s3_object_pw'])
+    #print(event['s3_object_k'])
     #print(event['s3_bucket_name'])
 
-    def get_passwords():
+    def get_auth(arg1):
         s3_resource = boto3.resource("s3", region_name=event['aws_region'])
         s3_object = s3_resource.Object(event['s3_bucket_name'], event['s3_object_pw'])
         with io.BytesIO() as f:
             s3_object.download_fileobj(f)
             f.seek(0)
             json_object = json.loads(f.read())
-            print(json_object["password"])
+            output = json_object[arg1]
+            return output
 
     def get_ssh_key():
         s3_resource = boto3.resource("s3", region_name=event['aws_region'])
@@ -31,13 +33,12 @@ def lambda_handler(event, context):
             file.write(ssh_key_str)
             file.close
 
-
-    def ssh():
+    def ssh(user_name, domain, password):
         k = paramiko.RSAKey.from_private_key_file("/tmp/bootstrap.pem")
         c = paramiko.SSHClient()
         c.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         print("connecting")
-        c.connect( hostname = "172.31.4.80", username = "bootstrap", pkey = k )
+        c.connect( hostname = "172.31.7.204", username = "bootstrap", pkey = k )
         print("connected")
         #commands = [ "date", "sleep 5", "date" ]
         commands = [ "echo \"P@\$\$Word123\" | sudo realm join -v -U admin lab.example.com", "sleep 5", "echo \"P@\$\$Word123\" | sudo realm leave -v -U admin lab.example.com" ]
@@ -51,7 +52,15 @@ def lambda_handler(event, context):
         c.close()
 
     def main():
-        get_ssh_key()
-        ssh()
+        returned_output = get_auth("username")
+        print(returned_output)
+        returned_output = get_auth("password")
+        print(returned_output)
+        returned_output = get_auth("domain")
+        print(returned_output)
+        #print(username)
+        #get_auth()
+        #get_ssh_key()
+        #ssh()
 
     main()
