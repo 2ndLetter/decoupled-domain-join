@@ -127,9 +127,9 @@ Resources:
     Properties:
       GroupDescription: Enable RDP access
       SecurityGroupIngress:
-        - IpProtocol: tcp
-          FromPort: '3389'
-          ToPort: '3389'
+        - IpProtocol: -1
+          FromPort: '-1'
+          ToPort: '-1'
           CidrIp: !Ref RDPLocation
 
   #LambdaSecurityGroup:
@@ -174,3 +174,13 @@ Outputs:
     Value: !Ref s3bucket
     Export:
       Name: !Sub "${AWS::StackName}-s3bucket"
+  InstanceSecurityGroup:
+    Description: Windows Server Security Group
+    Value: !Ref InstanceSecurityGroup
+    Export:
+      Name: !Sub "${AWS::StackName}-InstanceSecurityGroup"
+  EC2InstanceProfile:
+    Description: Windows ec2 Instance Profile
+    Value: !Ref EC2InstanceProfile
+    Export:
+      Name: !Sub "${AWS::StackName}-EC2InstanceProfile"

@@ -54,7 +54,8 @@ def lambda_handler(event, context):
         c.connect( hostname = priv_ip_addr, username = user_name, pkey = k )
         print("connected")
         #commands = [ "date", "sleep 5", "date" ]
-        commands = [ "echo \"$LC_IDENTIFICATION\" | sudo realm join -v -U $LC_NAME $LC_ADDRESS", "sleep 5", "echo \"$LC_IDENTIFICATION\" | sudo realm leave -v -U $LC_NAME $LC_ADDRESS" ]
+        #commands = [ "echo \"$LC_IDENTIFICATION\" | sudo realm join -v -U $LC_NAME $LC_ADDRESS", "sleep 5", "echo \"$LC_IDENTIFICATION\" | sudo realm leave -v -U $LC_NAME $LC_ADDRESS" ]
+        commands = [ "echo \"$LC_IDENTIFICATION\" | sudo realm join -v -U $LC_NAME $LC_ADDRESS" ]
 
         for command in commands:
             print("Executing {}".format( command ))

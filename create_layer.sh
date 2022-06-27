@@ -36,3 +36,7 @@ aws s3 cp python_layer.zip s3://$S3Bucket
 
 echo "deactivating python virtual environment"
 deactivate
+
+echo "Terminating myself!"
+Instance_ID=$(curl http://169.254.169.254/latest/meta-data/instance-id)
+aws ec2 terminate-instances --instance-ids $Instance_ID
