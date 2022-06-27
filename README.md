@@ -1,11 +1,11 @@
 # decoupled-domain-join
 #
 # Steps:
-1. Log into AWS account. I'm using ACloudGuru Cloud Sandbox
-2. Run `aws configure` to configure the aws cli
+1. Log into AWS account. I'm using ACloudGuru's AWS Cloud Sandbox
+2. Run `aws configure` to configure the aws cli with your credentials
 3. Run `./environment.sh lab` to create a new keypair and configure parameter file
 4. Run `./deploy-cfn.sh -n environment` to deploy the environment resources
-5. Create a Cloud9 environment > Copy the create_layer.sh script into a file within the IDE > Run `./create_layer.sh`
+5. Create a Cloud9 environment > Copy the create_layer.sh script into a file within the IDE > Run `./create_layer.sh` (Todo: automate with Amazon Linux 2 & Userdata script)
 6. Run `./function.sh` to zip the python script, upload it to s3, and configure the parameters file
 7. Run `./deploy-cfn.sh -n lab -r` to deploy the lab resources
 8. (Optional) Log into the Windows server and [install the AD admin tools](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_install_ad_tools.html) (Todo: Create a script to automate this)
@@ -14,12 +14,12 @@
 - Python module imported: [paramiko 2.11.0](https://pypi.org/project/paramiko/)
 
 # Todo:
-## Environment Script:
+## Environment Script (environment.sh):
 ### - [x] Create ec2 keypair
 ### - [x] Upload AD credentials to s3 bucket
 ### - [ ] Upload Code to S3
 ------
-## Environment CloudFormation Stack:
+## Environment CloudFormation Stack (environment.yml):
 ### - [x] S3 bucket for SSH keypairs 
 ### - [x] Microsoft AD
 ### - [x] Server 2019
@@ -28,12 +28,12 @@
 ### - [x] Create IAM Role
 ### - [x] Create Security group
 ------
-## Lab CloudFormation Stack:
+## Lab CloudFormation Stack (lab.yml):
 ### - [x] RHEL8 Instance (userdata)
 ### - [x] Instance Profile (IAM Role/Policies)
 ### - [x] Security Group(s)
 ------
-## Lab Script (userdata):
+## Userdata Script (lab cfn stack):
 ### - [x] Install SSM Agent, cfn-bootstrap, unzip, wget, python3, Chef Client
 ### - [x] Install temp user and add to wheel group
 ### - [x] Create SSH keypair
@@ -42,6 +42,10 @@
 ### - [x] Install Chef Client
 ### - [x] Invoke Lambda Function (payload: private ip, s3 bucket, username, passwords.json)
 ### - [ ] Delete temp user
+------
+## Lambda Function Script (function.sh):
+### - [x] Zip and upload python script to s3 bucket
+### - [x] Configure function.json parameters file
 ------
 ## Lambda Function: (payload: private ssh key + AD domain credentials + private IP address)
 ### - [x] Retrieve private ip address and s3 bucket from userdata payload (via aws lambda)
