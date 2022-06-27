@@ -16,7 +16,8 @@ SUBNET_B=$(aws ec2 describe-subnets | jq -r '.Subnets[1]' | jq -r '.SubnetId')
 
 # Configure parameters file
 echo "Configuring parameter file"
-cp function_template.json parameters/function.json
+cp templates/function_template.json parameters/function.json
+
 sed -i "s/SUBNET_A/$SUBNET_A/" parameters/function.json
 sed -i "s/SUBNET_B/$SUBNET_B/" parameters/function.json
 

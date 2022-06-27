@@ -30,7 +30,7 @@ ROUTE_TABLE=$(aws ec2 describe-route-tables | jq -r '.RouteTables[0]' | jq -r '.
 
 # Configure parameters file
 echo "Configuring parameter file"
-cp environment_template.json parameters/environment.json
+cp templates/environment_template.json parameters/environment.json
 
 sed -i "s/VPC_ID/$VPC/" parameters/environment.json
 sed -i "s/SUBNET_A/$SUBNET_A/" parameters/environment.json

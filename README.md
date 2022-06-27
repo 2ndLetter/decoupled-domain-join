@@ -1,5 +1,5 @@
 # decoupled-domain-join
-#
+
 # Steps:
 1. Log into AWS account. I'm using ACloudGuru's AWS Cloud Sandbox
 2. Run `aws configure` to configure the aws cli with your credentials
@@ -11,7 +11,7 @@
 8. (Optional) Log into the Windows server and [install the AD admin tools](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_install_ad_tools.html) (Todo: Create a script to automate this)
 9. (Optional) Run `./downloadpem.sh` to download the bootstrap pem file and test locally
 
-- Python module imported: [paramiko 2.11.0](https://pypi.org/project/paramiko/)
+- Python module used: [paramiko 2.11.0](https://pypi.org/project/paramiko/)
 
 # Todo:
 ## Environment Script (environment.sh):
@@ -53,10 +53,7 @@
 ### - [x] Retrieve AD credentials from S3 (via aws lambda)
 ### - [x] Connect to ec2 instance via SSH (via aws lambda)
 ### - [x] Joins ec2 instance to AD Domain (via aws lambda)
-### - [ ] Put it all together (via CloudFormation)
+### - [ ] Put it all together (via CloudFormation and scripts)
 ------
 ## Notes:
 ### - Work within venv: `source ~/venv/bin/activate`
-### - Manual Steps: Create IAM Role, Security Group, Create Lambda Function (30s timeout, test event), lambda layer
-
-
