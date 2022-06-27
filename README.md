@@ -7,9 +7,10 @@
 4. Run `./deploy-cfn.sh -n environment` to deploy the environment resources
 5. Run `./automate_create_layer.sh` to deploy an Amazon Linux 2 ec2 instance that will package up the python layer files and upload to s3
 6. Run `./function.sh` to zip the python script, upload it to s3, and configure the parameters file
-7. Run `./deploy-cfn.sh -n lab -r` to deploy the lab resources
-8. (Optional) Log into the Windows server and [install the AD admin tools](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_install_ad_tools.html) (Todo: Create a script to automate this)
-9. (Optional) Run `./downloadpem.sh` to download the bootstrap pem file and test locally
+7. Run `./deploy-cfn.sh -n function` to deploy the lambda function
+8. Run `./deploy-cfn.sh -n lab -r` to deploy the lab resources
+9. (Optional) Log into the Windows server and [install the AD admin tools](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_install_ad_tools.html) (Todo: Create a script to automate this)
+10. (Optional) Run `./downloadpem.sh` to download the bootstrap pem file and test locally
 
 - Python module used: [paramiko 2.11.0](https://pypi.org/project/paramiko/)
 
@@ -17,7 +18,7 @@
 ## Environment Script (environment.sh):
 ### - [x] Create ec2 keypair
 ### - [x] Upload AD credentials to s3 bucket
-### - [ ] Upload Code to S3
+### - [x] Upload Code to S3
 ------
 ## Environment CloudFormation Stack (environment.yml):
 ### - [x] S3 bucket for SSH keypairs 
@@ -53,7 +54,7 @@
 ### - [x] Retrieve AD credentials from S3 (via aws lambda)
 ### - [x] Connect to ec2 instance via SSH (via aws lambda)
 ### - [x] Joins ec2 instance to AD Domain (via aws lambda)
-### - [ ] Put it all together (via CloudFormation and scripts)
+### - [x] Put it all together (via CloudFormation and scripts)
 ------
 ## Notes:
 ### - Work within venv: `source ~/venv/bin/activate`
