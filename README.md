@@ -13,7 +13,10 @@
 10. (Optional) Run `./downloadpem.sh` to download the bootstrap pem file and test locally
 
 - Python module used: [paramiko 2.11.0](https://pypi.org/project/paramiko/)
-
+------
+# Automated Execution
+## - Run `./execute_lab.sh` in order to execute the entire lab from end to end
+------
 # Todo:
 ## Environment Script (environment.sh):
 ### - [x] Create ec2 keypair

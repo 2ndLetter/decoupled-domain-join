@@ -16,6 +16,13 @@ echo "running: ./automate_create_layer.sh"
 echo "running: ./function.sh"
 ./function.sh
 
+# until loop
+until aws s3 ls s3://$(aws cloudformation list-exports --query "Exports[?Name=='cfn-stack-environment-s3bucket'].Value" --output text)/python_layer.zip
+do
+  echo "The python_layer.zip is not ready, sleep for 5s before rechecking"
+  sleep 5
+done
+
 echo "running: ./deploy-cfn.sh -n function"
 ./deploy-cfn.sh -n function
 
