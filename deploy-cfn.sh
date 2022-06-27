@@ -33,7 +33,7 @@ echo "This script valdates a CloudFormation template, and creates/updates a Clou
 
 aws cloudformation deploy \
     --stack-name cfn-stack-$NAME \
-    --template-file $argN.yml \
+    --template-file cfn-templates/$argN.yml \
     --parameter-overrides file://parameters/$argN.json \
     --no-fail-on-empty-changeset \
     --capabilities CAPABILITY_NAMED_IAM \
