@@ -38,5 +38,7 @@ echo "deactivating python virtual environment"
 deactivate
 
 echo "Terminating myself!"
+yum install jq -y
+REGION=$(curl http://169.254.169.254/latest/dynamic/instance-identity/document | jq -r .region)
 Instance_ID=$(curl http://169.254.169.254/latest/meta-data/instance-id)
-aws ec2 terminate-instances --instance-ids $Instance_ID
+aws ec2 terminate-instances --instance-ids $Instance_ID --region $REGION

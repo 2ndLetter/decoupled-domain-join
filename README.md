@@ -5,7 +5,7 @@
 2. Run `aws configure` to configure the aws cli with your credentials
 3. Run `./environment.sh lab` to create a new keypair and configure parameter file
 4. Run `./deploy-cfn.sh -n environment` to deploy the environment resources
-5. Create a Cloud9 environment > Copy the create_layer.sh script into a file within the IDE > Run `./create_layer.sh` (Todo: automate with Amazon Linux 2 & Userdata script)
+5. Run `./automate_create_layer.sh` to deploy an Amazon Linux 2 ec2 instance that will package up the python layer files and upload to s3
 6. Run `./function.sh` to zip the python script, upload it to s3, and configure the parameters file
 7. Run `./deploy-cfn.sh -n lab -r` to deploy the lab resources
 8. (Optional) Log into the Windows server and [install the AD admin tools](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_install_ad_tools.html) (Todo: Create a script to automate this)

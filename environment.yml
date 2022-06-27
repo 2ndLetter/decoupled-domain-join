@@ -100,6 +100,7 @@ Resources:
         - !Sub arn:${AWS::Partition}:iam::aws:policy/AmazonS3FullAccess
         - !Sub arn:${AWS::Partition}:iam::aws:policy/AmazonEC2ReadOnlyAccess
         - !Sub arn:${AWS::Partition}:iam::aws:policy/AWSCloudFormationReadOnlyAccess
+        - !Sub arn:${AWS::Partition}:iam::aws:policy/AmazonEC2FullAccess
 
   #LambdaFunctionRole:
   #  Type: 'AWS::IAM::Role'
