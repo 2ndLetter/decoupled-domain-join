@@ -1,6 +1,11 @@
 # decoupled-domain-join
 
-# Steps:
+
+------
+# TL,DR Steps (automated Execution):
+## - Run `./execute_lab.sh` in order to execute the entire lab from end to end
+------
+# Detailed Steps:
 1. Log into AWS account. I'm using ACloudGuru's AWS Cloud Sandbox
 2. Run `aws configure` to configure the aws cli with your credentials
 3. Run `./environment.sh lab` to create a new keypair and configure parameter file
@@ -13,9 +18,6 @@
 10. (Optional) Run `./downloadpem.sh` to download the bootstrap pem file and test locally
 
 - Python module used: [paramiko 2.11.0](https://pypi.org/project/paramiko/)
-------
-# Automated Execution
-## - Run `./execute_lab.sh` in order to execute the entire lab from end to end
 ------
 # Todo:
 ## Environment Script (environment.sh):
