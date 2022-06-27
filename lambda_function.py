@@ -3,23 +3,7 @@ import boto3
 import json
 import paramiko
 
-# Userdata script:
-# - Returns the private ip address and S3 bucket name
-# - Invokes the lambda function (payload is private ip address, S3 bucket)
-# Lambda Function:
-# - *Include paramiko in the lambda function
-# - Retrieve private ip address and S3 bucket name from payload
-# - Retrieve private ssh key and AD credentials from S3 bucket
-# - SSH to server using private ip address
-# - Run domain join command
-
 def lambda_handler(event, context):
-
-    #print(event['aws_region'])
-    #print(event['s3_object_pw'])
-    #print(event['s3_object_k'])
-    #print(event['s3_bucket_name'])
-    #print(event['ip_address'])
 
     def get_auth(arg1):
         s3_resource = boto3.resource("s3", region_name=event['aws_region'])

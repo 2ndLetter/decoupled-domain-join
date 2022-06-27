@@ -1,1 +1,0 @@
-echo "Today is $DATE"
