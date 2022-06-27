@@ -2,7 +2,7 @@
 
 
 ------
-# TL,DR Steps (automated Execution):
+# TL,DR Steps (automated execution):
 ## - Run `./execute_lab.sh` in order to execute the entire lab from end to end
 ------
 # Detailed Steps:
