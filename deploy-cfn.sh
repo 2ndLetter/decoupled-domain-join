@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 while getopts 'n:u:rc' OPTION; do
   case "$OPTION" in
@@ -28,9 +28,6 @@ then
 fi
 
 NAME=$argN$argU$argR
-
-#echo $NAME
-#exit 0
 
 echo "This script valdates a CloudFormation template, and creates/updates a CloudFormation Stack"
 

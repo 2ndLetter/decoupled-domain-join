@@ -21,4 +21,7 @@ cp templates/function_template.json parameters/function.json
 sed -i "s/SUBNET_A/$SUBNET_A/" parameters/function.json
 sed -i "s/SUBNET_B/$SUBNET_B/" parameters/function.json
 
+# Cleanup zip file
+rm -fr python_function.zip
+
 echo "Script completed successfully!"
